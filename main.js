@@ -106,8 +106,8 @@ const findInvalidCard = (cardArr) => {
 }
 
 // TEST
-//console.log(findInvalidCards([valid1, valid2, valid3, valid4, valid5]));
-//console.log(findInvalidCards([invalid1, invalid2, invalid3, invalid4, invalid5]));
+//console.log(findInvalidCard([valid1, valid2, valid3, valid4, valid5]));
+//console.log(findInvalidCard([invalid1, invalid2, invalid3, invalid4, invalid5]));
 //console.log(findInvalidCard(batch));
 
 

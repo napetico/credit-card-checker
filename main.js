@@ -26,67 +26,64 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 // CODE FOR TASK #3
 
 const validateCred = (numArr) => {
-    /* This function is off. Run the Luhn Algorithm and return the modulo
-    const luhnAlg = (arr) => {}*/
-        // New array for the x2 numbers
-        let checkedArray = [];
+    // New array for the 2x numbers
+    let checkedArray = [];
     
-        // Reverse loop to push into checkArray the x2 numbers if array is even
-        if (numArr.length % 2 === 0) {
-            for (let i = numArr.length - 1; i >= 0; i--) {
-                if (i % 2 !== 0) {
-                    checkedArray.push(numArr[i]);
-                }
-                if (i % 2 === 0) {
-                    if (numArr[i] * 2 > 9) {
-                        checkedArray.push(numArr[i] * 2 - 9);
-                    } else {
-                        checkedArray.push(numArr[i] * 2);
-                    }
-                }
-            } 
-        }
-    
-        // Reverse loop to push into checkArray the x2 numbers if array is odd
-        if (numArr.length % 2 !== 0) {
-            for (let i = numArr.length - 1; i >= 0; i--) {
-                if (i % 2 !== 0) {
-                    if (numArr[i] * 2 > 9) {
-                        checkedArray.push(numArr[i] * 2 - 9);
-                    } else {
-                        checkedArray.push(numArr[i] * 2);
-                    }
-                }
-                if (i % 2 === 0) {
-                    checkedArray.push(numArr[i]);
+    // Reverse loop to push into checkArray the x2 numbers if array is even
+    if (numArr.length % 2 === 0) {
+        for (let i = numArr.length - 1; i >= 0; i--) {
+            if (i % 2 !== 0) {
+                checkedArray.push(numArr[i]);
+            }
+            if (i % 2 === 0) {
+                if (numArr[i] * 2 > 9) {
+                    checkedArray.push(numArr[i] * 2 - 9);
+                } else {
+                    checkedArray.push(numArr[i] * 2);
                 }
             }
-        }
+        } 
+    }
     
-        //console.log(checkedArray);
-    
-        // Add all nums in the array and get the sum modulo
-        const verification = (numArr) => {
-            let sum = 0;
-            for (let num of numArr) {
-                sum += num;
+    // Reverse loop to push into checkArray the x2 numbers if array is odd
+    if (numArr.length % 2 !== 0) {
+        for (let i = numArr.length - 1; i >= 0; i--) {
+            if (i % 2 !== 0) {
+                if (numArr[i] * 2 > 9) {
+                    checkedArray.push(numArr[i] * 2 - 9);
+                } else {
+                    checkedArray.push(numArr[i] * 2);
+                }
             }
-            return sum % 10;
+            if (i % 2 === 0) {
+                checkedArray.push(numArr[i]);
+            }
         }
+    }
     
-        //console.log(verification(checkedArray));
-        if (verification(checkedArray) === 0) {
-            return true;
-        } else {
-            return false;
+    // TEST
+    //console.log(checkedArray);
+    
+    // Add all nums in the array and get the sum modulo
+    const verification = (numArr) => {
+        let sum = 0;
+        for (let num of numArr) {
+            sum += num;
         }
-
-    /* This function is off. We need this function to get one card at the time, not the whole batch.
-    for (let card of arr) {
-        console.log(luhnAlg(card));
-    }*/
+        return sum % 10;
+    }
+    
+    // TEST
+    //console.log(verification(checkedArray));
+    
+    if (verification(checkedArray) === 0) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
+// TEST
 //console.log(validateCred(valid3));
 //console.log(validateCred(invalid5));
 //console.log(validateCred(mystery1));
@@ -95,7 +92,7 @@ const validateCred = (numArr) => {
 // CODE FOR TASK #4:
 
 const findInvalidCard = (cardArr) => {
-    // New array to hold the rssults of filtering the cardArr
+    // New array to hold the results from filtering the cardArr
     const invalidCards = [];
     
     // Function to iterate over eacn card in the batch and push into the new array the cards that return false
@@ -108,6 +105,7 @@ const findInvalidCard = (cardArr) => {
     return invalidCards;
 }
 
+// TEST
 //console.log(findInvalidCards([valid1, valid2, valid3, valid4, valid5]));
 //console.log(findInvalidCards([invalid1, invalid2, invalid3, invalid4, invalid5]));
 //console.log(findInvalidCard(batch));
@@ -116,9 +114,10 @@ const findInvalidCard = (cardArr) => {
 // CODE FOR TASK #5:
 
 const idInvalidCardCompanies = (cardArr) => {
-
+    // New array to hold the card comany names from the iteration below
     cardCompanies = [];
-
+    
+    // Iterate over each array of card numbers and push into casdCompanies the correct company name with no duplicates
     cardArr.forEach(numArr => {
         if (numArr[0] === 3 && cardCompanies.indexOf('Amex') === -1) {
             cardCompanies.push('Amex');
@@ -136,6 +135,7 @@ const idInvalidCardCompanies = (cardArr) => {
     return cardCompanies;
 }
 
+// TEST
 //console.log(idInvalidCardCompanies([invalid1]));
 //console.log(idInvalidCardCompanies([valid3]));
 //console.log(idInvalidCardCompanies(findInvalidCard(batch)));
@@ -143,9 +143,12 @@ const idInvalidCardCompanies = (cardArr) => {
 
 // CODE TASK #7 (EXTRAS):
 
+// Iterate over each character in the string
 const stringToArray = (string) => {
+    // Array to store the pushed numbers from the function below
     let cardNumsArray = [];
-
+    
+    // Goes over each character converting it from string tu number and pushing it into the cardNumsArray
     for (let i = 0; i < string.length; i++) {
         cardNumsArray.push(parseInt(string[i]))
     }
@@ -153,6 +156,6 @@ const stringToArray = (string) => {
     return cardNumsArray;
 }
 
+// TEST
 //console.log(stringToArray('5452368756683762'))
-
 //console.log(validateCred(stringToArray('4539583603014719')))
